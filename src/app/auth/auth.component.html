@@ -1,1 +1,22 @@
-<p>auth works!</p>
+<div class="conteiner">
+    <img src="assets/CarAnm_002_00001.png"npm install ng-zorro-antd>
+    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Խնդրում եմ մուտքագրեք Ձեր անունը!">
+            <nz-input-group nzPrefixIcon="user" >
+              <input type="text" nz-input formControlName="userName" placeholder="Անուն" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Խնդրում եմ մուտքագրեք Ձեր գաղտնաբառը!">
+            <nz-input-group nzPrefixIcon="lock">
+              <input type="password" nz-input formControlName="password" placeholder="Գաղտնաբառ" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+       
+        <button nz-button class="login-form-button" [nzType]="'primary'">Մուտք</button>
+       <p style="color: red;">{{url.errorMessage}}</p>
+      </form>
+</div>

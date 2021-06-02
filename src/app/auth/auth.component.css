@@ -1,0 +1,22 @@
+.conteiner{
+    width: 25%;
+    margin: 0 auto;
+    padding-top: 27px;
+}
+
+.conteiner img{
+  display: block;
+  margin: 0 auto;
+  width: 70px;
+  height: 70px;
+}
+
+
+.login-form {
+  padding-top: 20px;
+}
+
+
+  .login-form-button {
+    width: 100%;
+  }

@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "fed99ee9-390a-46c3-9685-ace11699db83"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "project-yev": {
+    "yev-project": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/project-yev",
+            "outputPath": "dist/yev-project",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "project-yev:build:production"
+              "browserTarget": "yev-project:build:production"
             },
             "development": {
-              "browserTarget": "project-yev:build:development"
+              "browserTarget": "yev-project:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "project-yev:build"
+            "browserTarget": "yev-project:build"
           }
         },
         "test": {
@@ -102,5 +105,5 @@
       }
     }
   },
-  "defaultProject": "project-yev"
+  "defaultProject": "yev-project"
 }
