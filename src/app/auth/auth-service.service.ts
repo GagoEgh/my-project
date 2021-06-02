@@ -5,11 +5,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthServiceService {
-  token: string|null  = '';
-  errorMessage: string = '';
-  constructor(private http: HttpClient) { }
+  errorMessage:string='';
+  constructor(private http:HttpClient) { }
 
-  loginPost(obj: Object) {
-    return this.http.post('http://api.yevyev.am/login/login/', obj);
+  loginPost(obj:Object){
+    return this.http.post('http://api.yevyev.am/login/login/',obj)
   }
 }

@@ -1,8 +1,10 @@
-import { HttpErrorResponse } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from './auth-service.service';
+
+
 
 @Component({
   selector: 'app-auth',
@@ -10,36 +12,32 @@ import { AuthServiceService } from './auth-service.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  validateForm!: FormGroup;
+  validateForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, public url: AuthServiceService,private router:Router) { }
-
+  constructor(private form: FormBuilder, public url: AuthServiceService,private router:Router) { }
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-    });
-  }
-
-
-  submitForm(): void {
-    //if(this.validateForm.invalid){return}
-    let obj = {
-      password: this.validateForm.get('password')?.value,
-      username: this.validateForm.get('userName')?.value,
-    }
-  
-    this.url.loginPost(obj).subscribe((el:any)=>{
-
-      let ob = JSON.stringify(el);
-      localStorage.setItem('token', JSON.stringify(el.token));
-      this.url.token = localStorage.getItem('token');
-      this.router.navigate(['/dashboard'])
-    },(el:HttpErrorResponse )=>{
-  
-      this.url.errorMessage = el.error.message;
+    this.validateForm = this.form.group({
+      userName: [null, Validators.required],
+      password: [null, Validators.required]
     })
   }
 
 
+  submitForm() {
+    let obj = {
+      username: this.validateForm?.get('userName')?.value,
+      password: this.validateForm?.get('password')?.value
+    }
+    
+    this.url.loginPost(obj).subscribe((el: any) => {
+      document.cookie = 'role =' + el.role_code;
+      document.cookie = 'access =' + el.token;
+      
+      localStorage.setItem('user',JSON.stringify(el.user.user))
+      this.router.navigate(['/dashboard'])
+    },(err)=>{
+      this.url.errorMessage = err.error.message;
+    })
+
+  }
 }
