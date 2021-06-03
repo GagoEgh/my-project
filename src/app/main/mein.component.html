@@ -5,21 +5,25 @@
         </div>
         <nav class="menu">
             <ul>
-                <li class="list"><a routerLink= ''>Վարորդներ</a></li>
-                <li class="list"><a routerLink = '/dashboard/users'>Ուղևորներ</a></li>
-                <li class="list"><a routerLink = '/dashboard/main-routes'>Երթեր</a></li>
-                <li class="list"><a routerLink = '/dashboard/orders'>Պատվերներ</a></li>
-                <li class="list"><a routerLink = '/dashboard/moderator'>Աշխատակիցներ</a></li>
-                <li class="list"><a routerLink = '/dashboard/other-orders'>Այլ</a></li>
-                <li class="list"><a routerLink = '/dashboard/moderator-settings'>
-                    <i nz-icon nzType="user" nzTheme="outline"></i>
-                </a></li>
-                <li class="list"><a routerLink = '/dashboard/settings'>
-                    <i nz-icon nzType="setting" nzTheme="outline"></i>
-                </a></li>
-                <li class="list"><a routerLink = '/auth'>Ելք</a></li>
-                <li class="list"><a href="#"><i nz-icon nzType="bell" nzTheme="outline" style="font-size: 25px;"></i></a></li>
-                <li class="list"><a href="#"><i nz-icon nzType="bell" nzTheme="outline" class='bgCol'></i></a></li>
+                <li class="list"><a routerLink='/dashboard/driver'  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                   >Վարորդներ</a></li>
+                <li class="list"><a routerLink='/dashboard/users' routerLinkActive="active">Ուղևորներ</a></li>
+                <li class="list"><a routerLink='/dashboard/main-routes' routerLinkActive="active">Երթեր</a></li>
+                <li class="list"><a routerLink='/dashboard/orders' routerLinkActive="active">Պատվերներ</a></li>
+                <li class="list"><a routerLink='/dashboard/moderator' routerLinkActive="active">Աշխատակիցներ</a></li>
+                <li class="list"><a routerLink='/dashboard/other-orders' routerLinkActive="active">Այլ</a></li>
+                <li class="list"><a routerLink='/dashboard/moderator-settings' routerLinkActive="active">
+                        <i nz-icon nzType="user" nzTheme="outline"></i>
+                    </a></li>
+                <li class="list"><a routerLink='/dashboard/settings' routerLinkActive="active">
+                        <i nz-icon nzType="setting" nzTheme="outline"></i>
+                    </a></li>
+                <li class="list"><a routerLink='/auth' routerLinkActive="active">Ելք</a></li>
+                <li class="list"><a href="#" routerLinkActive="active"><i nz-icon nzType="bell" nzTheme="outline"
+                            style="font-size: 25px;"></i></a></li>
+                <li class="list"><a href="#" routerLinkActive="active">
+                    <i nz-icon nzType="bell" nzTheme="outline" class='bgCol'></i></a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -28,4 +32,3 @@
 <main class="wrap">
     <router-outlet></router-outlet>
 </main>
-

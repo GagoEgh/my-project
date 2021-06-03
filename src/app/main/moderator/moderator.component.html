@@ -1,1 +1,62 @@
-<p>moderator works!</p>
+<header>
+  <h1>Աշխատակիցներ</h1>
+  <div class="modal">
+    <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Ավելացնել աշխատակիցներ</span></button>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Աշխատակից" nzOkText='Հաստատել' (nzOnCancel)="handleCancel()"
+      (nzOnOk)="handleOk()" nzCancelText='Փակել' nzWidth='45%'>
+      <ng-container *nzModalContent>
+        <form nz-form [formGroup]="validateForm" class="ant-advanced-search-form">
+          <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+              <nz-form-label nzFor="frstname" nzRequired>Անուն</nz-form-label>
+              <nz-form-item>
+                <nz-form-control [nzErrorTip]='error1'>
+                  <input nz-input formControlName="frstname" id="frstname" />
+                </nz-form-control>
+              </nz-form-item>
+              <ng-template #error1>
+                <p *ngIf=' message("frstname")'>{{serv.erroreMesage}}</p>
+              </ng-template>
+            </div>
+            <div nz-col [nzSpan]="12">
+              <nz-form-label nzFor="lastname" nzRequired>Ազգանուն</nz-form-label>
+              <nz-form-item>
+                <nz-form-control nzErrorTip='սա պարտադիր դաշտ է'>
+                  <input nz-input formControlName="lastname" id="lastname" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+              <nz-form-label nzFor="username" nzRequired>username</nz-form-label>
+              <nz-form-item>
+                <nz-form-control nzErrorTip='սա պարտադիր դաշտ է'>
+                  <input nz-input formControlName="username" id="username" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+              <nz-form-label nzFor="phoneNumber" nzRequired>հեռախոսահամար</nz-form-label>
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your phone number!">
+                  
+                  <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+                    <ng-template #addOnBeforeTemplate>
+                      <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                        <nz-option [nzLabel]="code" [nzValue]="code" *ngFor = ' let code of serv.tellCode'></nz-option>
+
+                      </nz-select>
+                    </ng-template>
+                    <input formControlName="tell" id="'phoneNumber'" nz-input />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+
+            </div>
+          </div>
+        </form>
+      </ng-container>
+    </nz-modal>
+  </div>
+</header>

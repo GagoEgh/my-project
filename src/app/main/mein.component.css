@@ -52,6 +52,11 @@ header{
     margin:20px auto;
 }
 
+.active{
+    border-bottom: 1px solid white !important;
+}
+
+
 @media (min-width: 1441px) and (max-width: 1600px) {
     .menu{
         width: 80%;
