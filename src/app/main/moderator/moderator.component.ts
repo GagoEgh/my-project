@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModeratorServService } from './moderator-serv.service';
-
+import { map, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-moderator',
   templateUrl: './moderator.component.html',
@@ -17,8 +17,8 @@ export class ModeratorComponent implements OnInit {
       frstname: [null, [Validators.required]],
       lastname: [null, [Validators.required]],
       username: [null, [Validators.required]],
-      tell: [null, [Validators.required, this.validNumber, Validators.minLength(6),Validators.maxLength(6)]],
-      phoneNumberPrefix: [null, [Validators.required]]
+      tell: [null, [Validators.required, this.validNumber, Validators.minLength(6), Validators.maxLength(6)]],
+      phoneNumberPrefix: ['091', [Validators.required]]
     })
   }
 
@@ -36,20 +36,32 @@ export class ModeratorComponent implements OnInit {
   message(formName: string) {
     if (this.validateForm.get(formName)?.hasError('required')) this.serv.erroreMesage = 'սա պարտադիր դաշտ է'
     else if (this.validateForm.get(formName)?.hasError('erroreNumber')) this.serv.erroreMesage = 'գրել միայն թիվ'
-    else if(this.validateForm.get(formName)?.hasError('minlength')||this.validateForm.get(formName)?.hasError('maxlength')){
+    else if (this.validateForm.get(formName)?.hasError('minlength') || this.validateForm.get(formName)?.hasError('maxlength')) {
       this.serv.erroreMesage = 'թվերի քանակը պետք է լինի 6';
-    }else this.serv.erroreMesage = '';
+    } else this.serv.erroreMesage = '';
     return this.serv.erroreMesage;
   }
-  
+
   showModal(): void {
- 
+
     this.isVisible = true;
   }
 
   handleOk(): void {
-    console.log(this.validateForm);
-    this.isVisible = false;
+   
+      // this.isVisible = false;
+      let phone_number = this.validateForm.get('phoneNumberPrefix')?.value +this.validateForm.get('tell')?.value;
+      let user={
+        first_name:this.validateForm.get('frstname')?.value,
+        image:'',
+        last_name:this.validateForm.get('lastname')?.value,
+        phone_number:phone_number,
+        username:this.validateForm.get('username')?.value,
+      }
+     
+      
+    
+  
   }
 
   handleCancel(): void {

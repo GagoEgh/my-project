@@ -12,7 +12,8 @@ export class ModeratorServService {
   // http://api.yevyev.am/userdetails/user/?search=&user_role__code=MDR&page=1&limit=10&offset=0  get
   constructor(public http: HttpClient) { }
 
-  DataPost(obj: Object) {
+  dataPost(obj: Object) {
     return this.http.post('http://api.yevyev.am/userdetails/add-moderator/', obj)
   }
+ 
 }
