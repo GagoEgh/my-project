@@ -22,8 +22,9 @@ export class ModeratorComponent implements OnInit {
       phoneNumberPrefix: ['091', [Validators.required]]
     })
     this.showTable().subscribe();
+    
+     
   }
-
 
 
   validNumber(confirm: FormControl) {
@@ -45,7 +46,9 @@ export class ModeratorComponent implements OnInit {
   }
 
   showModal(): void {
-
+    if(this.serv.isUserForm){
+      this.validateForm.get('frstname')?.setValue(this.validateForm.get('frstname')?.value)
+    }
     this.isVisible = true;
   }
 
@@ -76,19 +79,21 @@ export class ModeratorComponent implements OnInit {
   showTable() {
     return this.serv.getDatas().pipe(map((el: any) => {
       this.listOfData = el.results;
-
+      this.serv.total = el.count;
     }))
   }
 
   handleCancel(): void {
     this.isVisible = false;
-    this.validateForm.reset()
+    this.validateForm.reset();
+    this.validateForm.get('phoneNumberPrefix')?.setValue('091');
   }
 
 
   // table
 
   listOfData: any[] = [];
+  
   onQueryParamsChange(event: NzTableQueryParams) {
 
     this.serv.pageIndex = event.pageIndex;

@@ -6,12 +6,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ModeratorServService {
-  pageSize=10;
-  pageIndex = 1;
-  total=100;
-  erroreMesage: string = '';
   tellCode = ['091', '099', '077', '093', '094', '098', '055', '095'];
-
+  erroreMesage: string = '';
+  isUserForm = false;
+  pageIndex = 1;
+  pageSize=10;
+  total=100;
+  
   constructor(public http: HttpClient) { }
   creitHeaders() {
     let headers: HttpHeaders = new HttpHeaders();

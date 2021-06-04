@@ -49,7 +49,7 @@
                   <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
                     <ng-template #addOnBeforeTemplate>
                       <nz-select formControlName="phoneNumberPrefix" class="phone-select">
-                        <nz-option [nzLabel]="code" [nzValue]="code" *ngFor = ' let code of serv.tellCode'></nz-option>
+                        <nz-option [nzLabel]="code" [nzValue]="code" *ngFor=' let code of serv.tellCode'></nz-option>
                       </nz-select>
                     </ng-template>
                     <input formControlName="tell" id="'phoneNumber'" nz-input />
@@ -70,37 +70,38 @@
 <!-- table-->
 
 
-<nz-table nzBordered [nzData]="listOfData"
-  [nzFrontPagination]="false" [nzPageSize]="serv.pageSize"
-  [nzPageIndex]="serv.pageIndex" [nzTotal]="serv.total"  (nzQueryParams)="onQueryParamsChange($event)">
-  
-    <thead>
-        <tr>
-            <th nzWidth="5%">N</th>
-            <th nzWidth="15%">Անուն Ազգանուն</th>
-            <th nzWidth="15%">username</th>
-            <th nzWidth="15%">Ուղղություններ</th>
-            <th nzWidth="5%"></th>
-            <th nzWidth="5%"></th>
-            <th nzWidth="15%"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor = 'let dat of listOfData'>
-            <ng-container>
-                <td></td>
-                <td>
-                  {{dat.user.first_name}}
-                  {{dat.user.last_name}}
-                  {{dat.phone_number}}
-                </td>
-                <td>{{dat.username}}</td>
-                <td></td>
-                <td>icon</td>
-                <td>icon</td>
-                <td>icon</td>
-            </ng-container>
-        </tr>
-       
-    </tbody>
+<nz-table nzBordered [nzData]="listOfData" [nzFrontPagination]="false" [nzPageSize]="serv.pageSize"
+  [nzPageIndex]="serv.pageIndex" [nzTotal]="serv.total" (nzQueryParams)="onQueryParamsChange($event)">
+
+  <thead>
+    <tr>
+      <th nzWidth="1.6%">N</th>
+      <th nzWidth="12%">Անուն Ազգանուն</th>
+      <th nzWidth="10%">username</th>
+      <th nzWidth="12%">Ուղղություններ</th>
+      <th nzWidth="1.6%"></th>
+      <th nzWidth="5%"></th>
+      <th nzWidth="10%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let dat of listOfData, let i = index'>
+      <ng-container>
+        <td>{{serv.pageIndex*10+i-10+1}}</td>
+        <td>
+          {{dat.user.first_name}}
+          {{dat.user.last_name}}
+          {{dat.phone_number}}
+        </td>
+        <td>{{dat.user.username}}</td>
+        <td></td>
+        <td>
+            <i nz-icon nzType="edit"  nzTheme="outline" (click)="showModal()" class="icon"></i>
+        </td>
+        <td>icon</td>
+        <td>icon</td>
+      </ng-container>
+    </tr>
+
+  </tbody>
 </nz-table>
