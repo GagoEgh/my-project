@@ -5,6 +5,7 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { ModeratorRouterModule } from "./moderator-router.module";
 import { ModeratorComponent } from "./moderator.component";
 
+
 @NgModule({ 
     declarations:[ModeratorComponent],
     imports:[ModeratorRouterModule,SharedModule,CommonModule],

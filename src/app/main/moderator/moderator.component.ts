@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModeratorServService } from './moderator-serv.service';
 import { map, switchMap } from 'rxjs/operators';
+import { NzTableQueryParams } from 'ng-zorro-antd/table';
 @Component({
   selector: 'app-moderator',
   templateUrl: './moderator.component.html',
@@ -20,6 +21,7 @@ export class ModeratorComponent implements OnInit {
       tell: [null, [Validators.required, this.validNumber, Validators.minLength(6), Validators.maxLength(6)]],
       phoneNumberPrefix: ['091', [Validators.required]]
     })
+    this.showTable().subscribe();
   }
 
 
@@ -48,25 +50,51 @@ export class ModeratorComponent implements OnInit {
   }
 
   handleOk(): void {
-   
-      // this.isVisible = false;
-      let phone_number = this.validateForm.get('phoneNumberPrefix')?.value +this.validateForm.get('tell')?.value;
-      let user={
-        first_name:this.validateForm.get('frstname')?.value,
-        image:'',
-        last_name:this.validateForm.get('lastname')?.value,
-        phone_number:phone_number,
-        username:this.validateForm.get('username')?.value,
+    if (this.validateForm.valid) {
+
+      let phone_number = this.validateForm.get('phoneNumberPrefix')?.value + this.validateForm.get('tell')?.value;
+      let user = {
+        first_name: this.validateForm.get('frstname')?.value,
+        image: '',
+        last_name: this.validateForm.get('lastname')?.value,
+        phone_number: phone_number,
+        username: this.validateForm.get('username')?.value,
       }
-     
-      
-    
-  
+
+      this.serv.dataPost(user).pipe(switchMap((e: any) => {
+        return this.showTable()
+      })).subscribe(() => {
+        this.isVisible = false;
+        this.validateForm.reset()
+      });
+
+
+    }
+
+  }
+
+  showTable() {
+    return this.serv.getDatas().pipe(map((el: any) => {
+      this.listOfData = el.results;
+
+    }))
   }
 
   handleCancel(): void {
-
     this.isVisible = false;
+    this.validateForm.reset()
+  }
+
+
+  // table
+
+  listOfData: any[] = [];
+  onQueryParamsChange(event: NzTableQueryParams) {
+
+    this.serv.pageIndex = event.pageIndex;
+   console.log(event);
+   
+   this.showTable().subscribe()
   }
 
 }

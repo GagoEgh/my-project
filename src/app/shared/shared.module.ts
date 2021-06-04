@@ -10,8 +10,9 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import * as AllIcons from '@ant-design/icons-angular/icons';
-
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 
 
@@ -30,7 +31,9 @@ const antDesignIcons = AllIcons as {
         NzButtonModule,
         NzIconModule,
         NzModalModule,
-        NzSelectModule
+        NzSelectModule,
+        NzTableModule,
+        NzPaginationModule
         ],
     exports: [
         FormsModule,
@@ -41,7 +44,9 @@ const antDesignIcons = AllIcons as {
         NzButtonModule,
         NzIconModule,
         NzModalModule,
-        NzSelectModule
+        NzSelectModule,
+        NzTableModule,
+        NzPaginationModule
     ],
     providers:[{ provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ]
 

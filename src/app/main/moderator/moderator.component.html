@@ -59,7 +59,6 @@
                   <p *ngIf='message("tell")'>{{serv.erroreMesage}}</p>
                 </ng-template>
               </nz-form-item>
-
             </div>
           </div>
         </form>
@@ -67,3 +66,41 @@
     </nz-modal>
   </div>
 </header>
+
+<!-- table-->
+
+
+<nz-table nzBordered [nzData]="listOfData"
+  [nzFrontPagination]="false" [nzPageSize]="serv.pageSize"
+  [nzPageIndex]="serv.pageIndex" [nzTotal]="serv.total"  (nzQueryParams)="onQueryParamsChange($event)">
+  
+    <thead>
+        <tr>
+            <th nzWidth="5%">N</th>
+            <th nzWidth="15%">Անուն Ազգանուն</th>
+            <th nzWidth="15%">username</th>
+            <th nzWidth="15%">Ուղղություններ</th>
+            <th nzWidth="5%"></th>
+            <th nzWidth="5%"></th>
+            <th nzWidth="15%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = 'let dat of listOfData'>
+            <ng-container>
+                <td></td>
+                <td>
+                  {{dat.user.first_name}}
+                  {{dat.user.last_name}}
+                  {{dat.phone_number}}
+                </td>
+                <td>{{dat.username}}</td>
+                <td></td>
+                <td>icon</td>
+                <td>icon</td>
+                <td>icon</td>
+            </ng-container>
+        </tr>
+       
+    </tbody>
+</nz-table>
